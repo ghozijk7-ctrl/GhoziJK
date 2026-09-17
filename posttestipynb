@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyOIilMKS+4oKAjnoZhmOInt",
+      "authorship_tag": "ABX9TyPBluT/BfheD+lcLHtCBEMB",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -28,12 +28,635 @@
     },
     {
       "cell_type": "code",
-      "execution_count": null,
+      "execution_count": 4,
       "metadata": {
         "id": "VfDrPJynQCIf"
       },
       "outputs": [],
-      "source": []
+      "source": [
+        "# Mendefinisikan kelas kosong\n",
+        "class KomoditasPertanian:\n",
+        "    pass\n",
+        "# Mendefinisikan kelas dengan docstring\n",
+        "class SistemGudang:\n",
+        "    \"\"\"\n",
+        "    Kelas untuk merepresentasikan sistem manajemen gudang\n",
+        "    pada operasi agroindustri.\n",
+        "    \"\"\"\n",
+        "    pass\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Membuat objek dari kelas KomoditasPertanian\n",
+        "cabai_merah = KomoditasPertanian()\n",
+        "beras_medium = KomoditasPertanian()\n",
+        "kedelai_lokal = KomoditasPertanian()\n",
+        "\n",
+        "# Setiap variabel merujuk pada objek yang berbeda\n",
+        "print(type(cabai_merah))  # <class '_main_.KomoditasPertanian'>\n",
+        "print(cabai_merah is beras_medium)  # False — dua objek berbeda"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mXz4SMtqrGTd",
+        "outputId": "a5f7c626-f73f-4132-ce59-6ecbb427b6d3"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<class '__main__.KomoditasPertanian'>\n",
+            "False\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class KomoditasPertanian:\n",
+        "    \"\"\"\n",
+        "    Merepresentasikan satu jenis komoditas pertanian\n",
+        "    dalam sistem manajemen agroindustri.\n",
+        "    \"\"\"\n",
+        "    def __init__(self, nama, jenis, harga_per_kg, stok_kg):\n",
+        "        \"\"\"\n",
+        "        Konstruktor: dipanggil otomatis saat objek dibuat.\n",
+        "        Parameter:\n",
+        "        nama (str)\n",
+        "        jenis (str)\n",
+        "        : nama komoditas\n",
+        "        : kategori komoditas (Sayur, Buah,\n",
+        "        Biji-bijian)\n",
+        "        harga_per_kg (float): harga jual per kilogram (Rupiah)\n",
+        "        stok_kg (float)   : jumlah stok tersedia (kg)\n",
+        "        \"\"\"\n",
+        "        self.nama = nama\n",
+        "        self.jenis = jenis\n",
+        "        self.harga_per_kg = harga_per_kg\n",
+        "        self.stok_kg = stok_kg\n",
+        "# Membuat objek dengan nilai atribut yang berbeda\n",
+        "cabai_merah = KomoditasPertanian(\"Cabai Merah\", \"Sayur\", 45000, 150.0)\n",
+        "beras_cianjur = KomoditasPertanian(\"Beras Cianjur\", \"Biji-bijian\", 13500,\n",
+        "2000.0)\n",
+        "bawang_merah = KomoditasPertanian(\"Bawang Merah\", \"Sayur\", 38000, 300.0)\n",
+        "# Mengakses atribut objek menggunakan notasi titik\n",
+        "print(cabai_merah.nama)\n",
+        "# Cabai Merah\n",
+        "print(beras_cianjur.harga_per_kg)  # 13500\n",
+        "print(bawang_merah.stok_kg)\n",
+        "# 300.0"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YzZDxZ5nrWAu",
+        "outputId": "a3008da2-24a5-4070-f073-8a64faae1a6c"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Cabai Merah\n",
+            "13500\n",
+            "300.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cabai = KomoditasPertanian(\"Cabai Merah\", \"Sayur\", 45000, 150)\n",
+        "# Mengecek keberadaan atribut\n",
+        "print(hasattr(cabai, 'nama'))\n",
+        "print(hasattr(cabai, 'warna'))\n",
+        "# True\n",
+        "# False\n",
+        "# Mengakses atribut dengan getattr (aman jika atribut mungkin tidak ada)\n",
+        "nama = getattr(cabai, 'nama', 'Tidak Diketahui')\n",
+        "print(nama)  # Cabai Merah\n",
+        "# Menambah atribut baru secara dinamis\n",
+        "setattr(cabai, 'negara_asal', 'Indonesia')\n",
+        "print(cabai.negara_asal)  # Indonesia\n",
+        "# Menghapus atribut\n",
+        "delattr(cabai, 'negara_asal')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "avNr3et2rgW7",
+        "outputId": "72b407ac-db91-4eef-cf19-c95903427829"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "True\n",
+            "False\n",
+            "Cabai Merah\n",
+            "Indonesia\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class KomoditasPertanian:\n",
+        "    def __init__(self, nama, harga, stok):\n",
+        "        self.nama = nama    # public  — bebas diakses\n",
+        "        self._harga = harga   # protected — konvensi: akses melalui method\n",
+        "        self.__stok = stok    # private — name mangling\n",
+        "\n",
+        "cabai = KomoditasPertanian(\"Cabai Merah\", 45000, 150)\n",
+        "print(cabai.nama)           # OK — public\n",
+        "print(cabai._harga)         # OK — tapi melanggar konvensi\n",
+        "# print(cabai.__stok)       # AttributeError!\n",
+        "print(cabai._KomoditasPertanian__stok)  # 150 — name mangling"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xWLEC46orkNE",
+        "outputId": "50660704-0b80-419a-c5cf-97481c20938d"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Cabai Merah\n",
+            "45000\n",
+            "150\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Contoh method fungsi (dengan return) vs prosedur (tanpa return)\n",
+        "class KomoditasPertanian:\n",
+        "    def __init__(self, nama, harga_per_kg, stok_kg):\n",
+        "        self.nama         = nama\n",
+        "        self.harga_per_kg = harga_per_kg\n",
+        "        self.stok_kg      = stok_kg\n",
+        "\n",
+        "    # METHOD PROSEDUR — menampilkan info, tidak ada return\n",
+        "    def tampilkan_info(self):\n",
+        "        print(f\"Komoditas : {self.nama}\")\n",
+        "        print(f\"Harga     : Rp{self.harga_per_kg:,.0f}/kg\")\n",
+        "        print(f\"Stok      : {self.stok_kg:.1f} kg\")\n",
+        "\n",
+        "    # METHOD FUNGSI — menghitung dan mengembalikan nilai\n",
+        "    def hitung_nilai_stok(self):\n",
+        "        return self.harga_per_kg * self.stok_kg\n",
+        "\n",
+        "    # METHOD FUNGSI dengan parameter\n",
+        "    def hitung_biaya_pembelian(self, jumlah_kg):\n",
+        "        return self.harga_per_kg * jumlah_kg\n",
+        "\n",
+        "cabai = KomoditasPertanian(\"Cabai Merah\", 45000, 150)\n",
+        "\n",
+        "# Memanggil method prosedur (tidak ada nilai kembalian)\n",
+        "cabai.tampilkan_info()\n",
+        "\n",
+        "# Memanggil method fungsi (nilai kembalian dapat disimpan/dicetak)\n",
+        "nilai = cabai.hitung_nilai_stok()\n",
+        "print(f\"\\nTotal nilai stok: Rp{nilai:,.0f}\")\n",
+        "\n",
+        "biaya = cabai.hitung_biaya_pembelian(30)\n",
+        "print(f\"Biaya beli 30 kg: Rp{biaya:,.0f}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RQ4nqM9Srofu",
+        "outputId": "044f00b4-2a6b-48d7-abff-67d87265e65a"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Komoditas : Cabai Merah\n",
+            "Harga     : Rp45,000/kg\n",
+            "Stok      : 150.0 kg\n",
+            "\n",
+            "Total nilai stok: Rp6,750,000\n",
+            "Biaya beli 30 kg: Rp1,350,000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class KomoditasPertanian:\n",
+        "    def _init_(self, nama, jenis, harga_per_kg, stok_kg):\n",
+        "        self.nama = nama\n",
+        "        self.jenis = jenis\n",
+        "        self.harga_per_kg = harga_per_kg\n",
+        "        self.stok_kg = stok_kg\n",
+        "    # --- Method Pembaca ---\n",
+        "    def info(self):\n",
+        "        \"\"\"Mengembalikan string ringkasan informasi komoditas.\"\"\"\n",
+        "        return (f\"[{self.jenis}] {self.nama} | \"\n",
+        "                f\"Rp{self.harga_per_kg:,.0f}/kg | \"\n",
+        "                f\"Stok: {self.stok_kg:.1f} kg\")\n",
+        "\n",
+        "    def total_nilai_stok(self):\n",
+        "        \"\"\"Menghitung dan mengembalikan total nilai stok (Rupiah).\"\"\"\n",
+        "        return self.harga_per_kg * self.stok_kg\n",
+        "\n",
+        "    def cek_ketersediaan(self, kebutuhan_kg):\n",
+        "        \"\"\"Memeriksa apakah stok mencukupi kebutuhan.\"\"\"\n",
+        "        return self.stok_kg >= kebutuhan_kg\n",
+        "\n",
+        "    # --- Method Pengubah ---\n",
+        "\n",
+        "    def perbarui_harga(self, harga_baru):\n",
+        "        \"\"\"Memperbarui harga per kilogram komoditas.\"\"\"\n",
+        "        harga_lama = self.harga_per_kg\n",
+        "        self.harga_per_kg = harga_baru\n",
+        "        print(f\"Harga {self.nama} diperbarui: \"\n",
+        "              f\"Rp{harga_lama:,.0f} → Rp{harga_baru:,.0f}/kg\")\n",
+        "\n",
+        "    def tambah_stok(self, jumlah_kg):\n",
+        "        \"\"\"Menambah jumlah stok komoditas.\"\"\"\n",
+        "        if jumlah_kg <= 0:\n",
+        "            print(\"Error: jumlah penambahan stok harus lebih dari 0.\")\n",
+        "            return\n",
+        "        self.stok_kg += jumlah_kg\n",
+        "        print(f\"Stok {self.nama} bertambah {jumlah_kg} kg. \"\n",
+        "              f\"Total stok: {self.stok_kg:.1f} kg\")\n",
+        "\n",
+        "    def kurangi_stok(self, jumlah_kg):\n",
+        "        \"\"\"Mengurangi jumlah stok akibat penjualan atau pemakaian.\"\"\"\n",
+        "        if jumlah_kg > self.stok_kg:\n",
+        "            print(f\"Error: stok tidak mencukupi. \"\n",
+        "                  f\"Stok tersedia: {self.stok_kg:.1f} kg\")\n",
+        "            return False\n",
+        "        self.stok_kg -= jumlah_kg\n",
+        "        print(f\"Stok {self.nama} berkurang {jumlah_kg} kg. \"\n",
+        "              f\"Sisa stok: {self.stok_kg:.1f} kg\")\n",
+        "        return True"
+      ],
+      "metadata": {
+        "id": "k3tDBQpPruFl"
+      },
+      "execution_count": 13,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class KomoditasPertanian:\n",
+        "    def __init__(self, nama, jenis, harga_per_kg, stok_kg):\n",
+        "        self.nama = nama\n",
+        "        self.jenis = jenis\n",
+        "        self.harga_per_kg = harga_per_kg\n",
+        "        self.stok_kg = stok_kg\n",
+        "\n",
+        "    def __str__(self):\n",
+        "        \"\"\"Representasi string objek untuk fungsi print().\"\"\"\n",
+        "        return (f\"KomoditasPertanian(nama='{self.nama}', \"\n",
+        "                f\"jenis='{self.jenis}', \"\n",
+        "                f\"harga=Rp{self.harga_per_kg:,.0f}/kg, \"\n",
+        "                f\"stok={self.stok_kg:.1f} kg)\")\n",
+        "\n",
+        "    def total_nilai_stok(self):\n",
+        "        return self.harga_per_kg * self.stok_kg\n",
+        "\n",
+        "# Penggunaan\n",
+        "cabai = KomoditasPertanian(\"Cabai Merah\", \"Sayur\", 45000, 150.0)\n",
+        "print(cabai)\n",
+        "# Output: KomoditasPertanian(nama='Cabai Merah', jenis='Sayur',\n",
+        "#\n",
+        "# harga=Rp45,000/kg, stok=150.0 kg)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LGBer3R4r0sG",
+        "outputId": "6fa57a51-8c6b-4db8-8aa2-7e53cd5d3583"
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "KomoditasPertanian(nama='Cabai Merah', jenis='Sayur', harga=Rp45,000/kg, stok=150.0 kg)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class KomoditasPertanian:\n",
+        "    # Atribut kelas — dibagikan oleh semua objek\n",
+        "    satuan_default = \"kg\"\n",
+        "    jumlah_komoditas = 0  # menghitung berapa objek yang telah dibuat\n",
+        "\n",
+        "    def __init__(self, nama, jenis, harga_per_kg, stok_kg):\n",
+        "        # Atribut instansi — unik untuk setiap objek\n",
+        "        self.nama = nama\n",
+        "        self.jenis = jenis\n",
+        "        self.harga_per_kg = harga_per_kg\n",
+        "        self.stok_kg = stok_kg\n",
+        "\n",
+        "        # Setiap kali objek baru dibuat, tambahkan counter\n",
+        "        KomoditasPertanian.jumlah_komoditas += 1\n",
+        "\n",
+        "    def info_satuan(self):\n",
+        "        return f\"{self.nama} dijual per {KomoditasPertanian.satuan_default}\"\n",
+        "\n",
+        "\n",
+        "cabai = KomoditasPertanian(\"Cabai Merah\", \"Sayur\", 45000, 150)\n",
+        "beras = KomoditasPertanian(\"Beras Medium\", \"Biji-bijian\", 13500, 2000)\n",
+        "bawang = KomoditasPertanian(\"Bawang Merah\", \"Sayur\", 38000, 300)\n",
+        "\n",
+        "print(KomoditasPertanian.jumlah_komoditas)  # 3\n",
+        "print(cabai.info_satuan())  # Cabai Merah dijual per kg"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PoQjdWzOr5Wu",
+        "outputId": "96eec798-3017-4f00-abfd-8be46e173ac5"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3\n",
+            "Cabai Merah dijual per kg\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class KomoditasPertanian:\n",
+        "    \"\"\"Merepresentasikan satu jenis komoditas pertanian.\"\"\"\n",
+        "\n",
+        "    jumlah_komoditas = 0\n",
+        "\n",
+        "    def __init__(self, nama, jenis, harga_per_kg, stok_kg):\n",
+        "        self.nama = nama\n",
+        "        self.jenis = jenis\n",
+        "        self.harga_per_kg = harga_per_kg\n",
+        "        self.stok_kg = stok_kg\n",
+        "        KomoditasPertanian.jumlah_komoditas += 1\n",
+        "\n",
+        "    def __str__(self):\n",
+        "        return (f\"  - {self.nama} ({self.jenis}): \"\n",
+        "                f\"Rp{self.harga_per_kg:,.0f}/kg, \"\n",
+        "                f\"stok {self.stok_kg:.1f} kg\")\n",
+        "\n",
+        "    def total_nilai_stok(self):\n",
+        "        return self.harga_per_kg * self.stok_kg\n",
+        "\n",
+        "    def tambah_stok(self, jumlah_kg):\n",
+        "        self.stok_kg += jumlah_kg\n",
+        "\n",
+        "    def kurangi_stok(self, jumlah_kg):\n",
+        "        if jumlah_kg > self.stok_kg:\n",
+        "            return False\n",
+        "        self.stok_kg -= jumlah_kg\n",
+        "        return True\n",
+        "\n",
+        "\n",
+        "class Gudang:\n",
+        "    \"\"\"Merepresentasikan gudang penyimpanan komoditas pertanian.\"\"\"\n",
+        "\n",
+        "    def __init__(self, nama_gudang, lokasi, kapasitas_ton):\n",
+        "\n",
+        "        self.nama_gudang = nama_gudang\n",
+        "        self.lokasi = lokasi\n",
+        "        self.kapasitas_ton = kapasitas_ton\n",
+        "        self.daftar_komoditas = []  # list kosong untuk menyimpan objek komoditas\n",
+        "\n",
+        "    def __str__(self):\n",
+        "        return (f\"Gudang '{self.nama_gudang}' | \"\n",
+        "                f\"Lokasi: {self.lokasi} | \"\n",
+        "                f\"Kapasitas: {self.kapasitas_ton} ton\")\n",
+        "\n",
+        "    def tambah_komoditas(self, komoditas):\n",
+        "        \"\"\"Menambahkan objek KomoditasPertanian ke dalam gudang.\"\"\"\n",
+        "        self.daftar_komoditas.append(komoditas)\n",
+        "        print(f\"✓ {komoditas.nama} berhasil ditambahkan ke {self.nama_gudang}.\")\n",
+        "\n",
+        "    def tampilkan_isi(self):\n",
+        "        \"\"\"Menampilkan seluruh komoditas yang tersimpan di gudang.\"\"\"\n",
+        "        print(f\"\\n{'='*50}\")\n",
+        "        print(f\" ISI GUDANG: {self.nama_gudang}\")\n",
+        "        print(f\" Lokasi: {self.lokasi}\")\n",
+        "        print(f\"{'='*50}\")\n",
+        "        if not self.daftar_komoditas:\n",
+        "            print(\" (Gudang kosong)\")\n",
+        "        else:\n",
+        "            for komoditas in self.daftar_komoditas:\n",
+        "                print(komoditas)\n",
+        "        print(f\"{'='*50}\")\n",
+        "        print(f\" Total nilai stok: Rp{self.total_nilai_gudang():,.0f}\")\n",
+        "        print(f\"{'='*50}\\n\")\n",
+        "\n",
+        "    def total_nilai_gudang(self):\n",
+        "        \"\"\"Menghitung total nilai semua stok yang tersimpan.\"\"\"\n",
+        "        return sum(k.total_nilai_stok() for k in self.daftar_komoditas)\n",
+        "\n",
+        "    def total_stok_kg(self):\n",
+        "        \"\"\"Menghitung total berat stok keseluruhan.\"\"\"\n",
+        "        return sum(k.stok_kg for k in self.daftar_komoditas)\n",
+        "\n",
+        "    def cari_komoditas(self, nama):\n",
+        "        \"\"\"Mencari komoditas berdasarkan nama (case-insensitive).\"\"\"\n",
+        "        for k in self.daftar_komoditas:\n",
+        "            if k.nama.lower() == nama.lower():\n",
+        "                return k\n",
+        "        return None\n",
+        "\n",
+        "\n",
+        "# ============================================================\n",
+        "# PROGRAM UTAMA\n",
+        "# ============================================================\n",
+        "\n",
+        "# 1. Membuat objek-objek komoditas\n",
+        "cabai   = KomoditasPertanian(\"Cabai Merah\",  \"Sayur\",      45000, 150.0)\n",
+        "beras   = KomoditasPertanian(\"Beras Medium\", \"Biji-bijian\",13500, 2000.0)\n",
+        "bawang  = KomoditasPertanian(\"Bawang Merah\", \"Sayur\",      38000, 300.0)\n",
+        "kedelai = KomoditasPertanian(\"Kedelai\",      \"Biji-bijian\",11000, 500.0)\n",
+        "\n",
+        "# 2. Membuat objek gudang\n",
+        "gudang_bogor = Gudang(\"Gudang Utama Bogor\", \"Jl. Raya Bogor No. 12\", 50.0)\n",
+        "# 3. Memasukkan komoditas ke gudang\n",
+        "gudang_bogor.tambah_komoditas(cabai)\n",
+        "gudang_bogor.tambah_komoditas(beras)\n",
+        "gudang_bogor.tambah_komoditas(bawang)\n",
+        "gudang_bogor.tambah_komoditas(kedelai)\n",
+        "# 4. Menampilkan isi gudang\n",
+        "gudang_bogor.tampilkan_isi()\n",
+        "# 5. Simulasi transaksi\n",
+        "print(\"--- Simulasi Penjualan Cabai ---\")\n",
+        "cabai.kurangi_stok(30)\n",
+        "print(f\"Stok cabai setelah penjualan: {cabai.stok_kg} kg\")\n",
+        "print(\"\\n--- Simulasi Penerimaan Stok Beras ---\")\n",
+        "beras.tambah_stok(500)\n",
+        "print(f\"Stok beras setelah penerimaan: {beras.stok_kg} kg\")\n",
+        "# 6. Cari komoditas tertentu\n",
+        "hasil = gudang_bogor.cari_komoditas(\"kedelai\")\n",
+        "if hasil:\n",
+        "    print(f\"\\nKomoditas ditemukan: {hasil}\")\n",
+        "    print(f\"Nilai stok kedelai: Rp{hasil.total_nilai_stok():,.0f}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "EQabwtYLsQxZ",
+        "outputId": "c11982d8-a7d9-40e2-c946-81351ceb9e8e"
+      },
+      "execution_count": 20,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "✓ Cabai Merah berhasil ditambahkan ke Gudang Utama Bogor.\n",
+            "✓ Beras Medium berhasil ditambahkan ke Gudang Utama Bogor.\n",
+            "✓ Bawang Merah berhasil ditambahkan ke Gudang Utama Bogor.\n",
+            "✓ Kedelai berhasil ditambahkan ke Gudang Utama Bogor.\n",
+            "\n",
+            "==================================================\n",
+            " ISI GUDANG: Gudang Utama Bogor\n",
+            " Lokasi: Jl. Raya Bogor No. 12\n",
+            "==================================================\n",
+            "  - Cabai Merah (Sayur): Rp45,000/kg, stok 150.0 kg\n",
+            "  - Beras Medium (Biji-bijian): Rp13,500/kg, stok 2000.0 kg\n",
+            "  - Bawang Merah (Sayur): Rp38,000/kg, stok 300.0 kg\n",
+            "  - Kedelai (Biji-bijian): Rp11,000/kg, stok 500.0 kg\n",
+            "==================================================\n",
+            " Total nilai stok: Rp50,650,000\n",
+            "==================================================\n",
+            "\n",
+            "--- Simulasi Penjualan Cabai ---\n",
+            "Stok cabai setelah penjualan: 120.0 kg\n",
+            "\n",
+            "--- Simulasi Penerimaan Stok Beras ---\n",
+            "Stok beras setelah penerimaan: 2500.0 kg\n",
+            "\n",
+            "Komoditas ditemukan:   - Kedelai (Biji-bijian): Rp11,000/kg, stok 500.0 kg\n",
+            "Nilai stok kedelai: Rp5,500,000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class MesinPengering:\n",
+        "    \"\"\"\n",
+        "    Merepresentasikan mesin pengering pada sistem agroindustri.\n",
+        "    Atribut suhu_maksimum_celcius dan kapasitas_muat_kg merupakan\n",
+        "    batasan fisik nyata yang tidak boleh dilanggar saat operasi.\n",
+        "    \"\"\"\n",
+        "\n",
+        "    def __init__(self, nama_mesin, suhu_maksimum_celcius,\n",
+        "                 kapasitas_muat_kg):\n",
+        "        self.nama_mesin = nama_mesin                          # PUBLIC\n",
+        "        self.__suhu_maksimum_celcius = suhu_maksimum_celcius  # PRIVATE\n",
+        "        self.__kapasitas_muat_kg = kapasitas_muat_kg          # PRIVATE\n",
+        "        # Atribut state operasional\n",
+        "        self.__suhu_saat_ini = 0.0\n",
+        "        self.__muatan_saat_ini_kg = 0.0\n",
+        "        self.__sedang_beroperasi = False\n",
+        "\n",
+        "    def muat_bahan(self, berat_kg):\n",
+        "        \"\"\"Memuat bahan ke mesin, memvalidasi batas kapasitas fisik.\"\"\"\n",
+        "        if self.__muatan_saat_ini_kg + berat_kg > self.__kapasitas_muat_kg:\n",
+        "            print(f\"Error: kapasitas {self.nama_mesin} terlampaui \"\n",
+        "                  f\"({self.__muatan_saat_ini_kg + berat_kg:.1f} kg > \"\n",
+        "                  f\"{self.__kapasitas_muat_kg:.1f} kg).\")\n",
+        "            return False\n",
+        "        self.__muatan_saat_ini_kg += berat_kg\n",
+        "        print(f\"{berat_kg:.1f} kg bahan dimuat ke {self.nama_mesin}. \"\n",
+        "              f\"Total muatan: {self.__muatan_saat_ini_kg:.1f} kg.\")\n",
+        "        return True\n",
+        "\n",
+        "    def mulai_pengeringan(self, suhu_operasi):\n",
+        "        \"\"\"Memulai proses pengeringan, memvalidasi batas suhu maksimum.\"\"\"\n",
+        "        if suhu_operasi > self.__suhu_maksimum_celcius:\n",
+        "            print(f\"Error: suhu operasi {suhu_operasi}°C melebihi batas \"\n",
+        "                  f\"aman {self.__suhu_maksimum_celcius}°C untuk \"\n",
+        "                  f\"{self.nama_mesin}.\")\n",
+        "            return False\n",
+        "        self.__suhu_saat_ini = suhu_operasi\n",
+        "        self.__sedang_beroperasi = True\n",
+        "        print(f\"{self.nama_mesin} mulai beroperasi pada suhu \"\n",
+        "              f\"{suhu_operasi}°C.\")\n",
+        "        return True\n",
+        "\n",
+        "    def status(self):\n",
+        "        \"\"\"Mengembalikan ringkasan kondisi (state) mesin saat ini.\"\"\"\n",
+        "        kondisi = \"beroperasi\" if self.__sedang_beroperasi else \"berhenti\"\n",
+        "        return (f\"{self.nama_mesin} [{kondisi}] - suhu: \"\n",
+        "                f\"{self.__suhu_saat_ini}°C, \"\n",
+        "                f\"muatan: \"\n",
+        "                f\"{self.__muatan_saat_ini_kg:.1f}/{self.__kapasitas_muat_kg:.1f} kg\")\n",
+        "\n",
+        "# Penggunaan\n",
+        "pengering_a = MesinPengering(\"Pengering Gabah A\",\n",
+        "                             suhu_maksimum_celcius=60, kapasitas_muat_kg=500)\n",
+        "pengering_a.muat_bahan(450)\n",
+        "pengering_a.mulai_pengeringan(55)  # Diterima, di bawah batas maksimum\n",
+        "pengering_a.mulai_pengeringan(75)  # Ditolak, melampaui suhu maksimum\n",
+        "print(pengering_a.status())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ginm1PcUsmJM",
+        "outputId": "c484298c-8410-445a-8d90-773075fe22f2"
+      },
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "450.0 kg bahan dimuat ke Pengering Gabah A. Total muatan: 450.0 kg.\n",
+            "Pengering Gabah A mulai beroperasi pada suhu 55°C.\n",
+            "Error: suhu operasi 75°C melebihi batas aman 60°C untuk Pengering Gabah A.\n",
+            "Pengering Gabah A [beroperasi] - suhu: 55°C, muatan: 450.0/500.0 kg\n"
+          ]
+        }
+      ]
     }
   ]
 }
